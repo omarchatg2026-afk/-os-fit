@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#10151e" />
+  <meta name="description" content="OS Fit V3 — an offline-first personal fitness and training-intelligence workspace." />
+  <title>OS Fit V3 | Train with intention</title>
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/icon-192.png" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-theme="dark">
+  <div id="app" class="app-shell">
+    <aside id="sidebar" class="sidebar" aria-label="Main navigation">
+      <div class="side-brand"><div class="brand-mark"><span>OS</span></div><div><div class="brand-title">OS<span>FIT</span></div><div class="brand-sub">PERFORMANCE INTELLIGENCE</div></div></div>
+      <div class="side-group-label">WORKSPACE</div>
+      <nav id="sideNav" class="nav-menu"></nav>
+      <div class="side-spacer"></div>
+      <div class="local-notice"><span class="online-dot"></span><div><strong>Local-first</strong><small>Your data stays in this browser until cloud sync is set up.</small></div></div>
+      <button class="side-settings" data-page="settings"><span data-icon="settings"></span><span>Settings & Backup</span><span data-icon="chevron-right"></span></button>
+      <div class="side-foot">OS FIT <span>VERSION 3.0</span></div>
+    </aside>
+    <div id="mobileShade" class="mobile-shade" data-act="close-menu"></div>
+    <div class="workspace">
+      <header class="topbar">
+        <div class="top-left"><button class="icon-button mobile-menu-button" aria-label="Open navigation" data-act="open-menu"><span data-icon="menu"></span></button><div><div class="eyebrow" id="pageEyebrow">YOUR WORKSPACE</div><h1 id="pageTitle">Dashboard</h1></div></div>
+        <div class="top-right"><span id="headerDate" class="header-date"></span><div class="header-divider"></div><button id="themeToggle" class="icon-button" title="Toggle theme" aria-label="Toggle theme" data-act="toggle-theme"><span data-icon="moon"></span></button><button class="button button-primary header-start" data-act="start-workout"><span data-icon="plus"></span> Start workout</button><div class="avatar" id="avatar">A</div></div>
+      </header>
+      <main id="pageContent" class="page-content" tabindex="-1"></main>
+    </div>
+    <nav class="mobile-bottom-nav" id="mobileNav" aria-label="Mobile navigation"></nav>
+    <button class="floating-action" data-act="quick-add" aria-label="Quick add"><span data-icon="plus"></span></button>
+    <div id="modalRoot" class="modal-root" aria-live="polite"></div>
+    <div id="toastRoot" class="toast-root" role="status" aria-live="polite"></div>
+  </div>
+  <script src="./config.js" defer></script>
+  <script src="./app.js" defer></script>
+  <script src="./cloud.js" defer></script>
+</body>
+</html>

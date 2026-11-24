@@ -1,0 +1,6 @@
+/* Local PWA cache. Network-first for HTML/CSS/JS to reduce stale deployment issues. */
+const VERSION='os-fit-v3.0.0-phase1';
+const CORE=['./','./index.html','./styles.css','./app.js','./cloud.js','./config.js','./manifest.webmanifest','./assets/icon.svg','./assets/icon-192.png','./assets/icon-512.png'];
+self.addEventListener('install',event=>{event.waitUntil(caches.open(VERSION).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()))});
+self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==VERSION).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
+self.addEventListener('fetch',event=>{if(event.request.method!=='GET'||new URL(event.request.url).origin!==self.location.origin)return;const url=new URL(event.request.url);const frequentlyUpdated=event.request.mode==='navigate'||['index.html','app.js','cloud.js','config.js','styles.css'].some(n=>url.pathname.endsWith('/'+n));if(frequentlyUpdated){event.respondWith(fetch(event.request).then(res=>{if(res.ok){const copy=res.clone();caches.open(VERSION).then(cache=>cache.put(event.request,copy))}return res}).catch(()=>caches.match(event.request)));return}event.respondWith(caches.match(event.request).then(res=>res||fetch(event.request)))});
